@@ -1,0 +1,25 @@
+DROP DATABASE IF EXISTS homework_sql;
+CREATE DATABASE homework_sql CHAR SET UTF8MB4;
+USE homework_sql;
+
+CREATE TABLE person (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	first_name VARCHAR(40),
+    last_name VARCHAR(40),
+    age INT NOT NULL,
+    city_id INT NOT NULL
+);
+
+CREATE TABLE city (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40) UNIQUE NOT NULL, 
+    country_id INT NOT NULL
+);
+
+CREATE TABLE country (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(40) UNIQUE NOT NULL
+);
+
+ALTER TABLE person ADD FOREIGN KEY (city_id) REFERENCES city(id);
+ALTER TABLE city ADD FOREIGN KEY (country_id) REFERENCES country(id);
